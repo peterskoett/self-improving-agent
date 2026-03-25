@@ -8,6 +8,19 @@ metadata:
 
 Log learnings and errors to markdown files for continuous improvement. Coding agents can later process these into fixes, and important learnings get promoted to project memory.
 
+## Initialisation (Auto-run on first use)
+
+Before logging anything, ensure the `.learnings/` directory and files exist. If any are missing, create them:
+
+```bash
+mkdir -p .learnings
+[ -f .learnings/LEARNINGS.md ] || cp skills/self-improving-agent/assets/LEARNINGS.md .learnings/LEARNINGS.md 2>/dev/null || printf "# Learnings\n\nCorrections, insights, and knowledge gaps captured during development.\n\n**Categories**: correction | insight | knowledge_gap | best_practice\n\n---\n" > .learnings/LEARNINGS.md
+[ -f .learnings/ERRORS.md ] || printf "# Errors\n\nCommand failures and integration errors.\n\n---\n" > .learnings/ERRORS.md
+[ -f .learnings/FEATURE_REQUESTS.md ] || printf "# Feature Requests\n\nCapabilities requested by the user.\n\n---\n" > .learnings/FEATURE_REQUESTS.md
+```
+
+Never overwrite existing files. This is a no-op if `.learnings/` is already initialised.
+
 ## Quick Reference
 
 | Situation | Action |
