@@ -21,7 +21,7 @@ mkdir -p .learnings
 
 Never overwrite existing files. This is a no-op if `.learnings/` is already initialised.
 
-Do not log secrets, tokens, private keys, environment variables, or full source/config files unless the user explicitly asks for that level of detail.
+Do not log secrets, tokens, private keys, environment variables, or full source/config files unless the user explicitly asks for that level of detail. Prefer short summaries or redacted excerpts over raw command output or full transcripts.
 
 If you want automatic reminders or setup assistance, use the opt-in hook workflow described in [Hook Integration](#hook-integration).
 
@@ -107,6 +107,8 @@ OpenClaw provides tools to share learnings across sessions:
 - **sessions_history** — Read another session's transcript  
 - **sessions_send** — Send a learning to another session
 - **sessions_spawn** — Spawn a sub-agent for background work
+
+Use these only in trusted environments and only when the user explicitly wants cross-session sharing. Prefer sending a short sanitized summary and relevant file paths, not raw transcripts, secrets, or full command output.
 
 ### Optional: Enable Hook
 
@@ -205,6 +207,7 @@ Actual error message or output
 - Command/operation attempted
 - Input or parameters used
 - Environment details if relevant
+- Summary or redacted excerpt of relevant output (avoid full transcripts and secret-bearing data by default)
 
 ### Suggested Fix
 If identifiable, what might resolve this
@@ -507,7 +510,7 @@ Create `.claude/settings.json` in your project:
 
 This injects a learning evaluation reminder after each prompt (~50-100 tokens overhead).
 
-### Full Setup (With Error Detection)
+### Advanced Setup (With Error Detection)
 
 ```json
 {
@@ -529,6 +532,8 @@ This injects a learning evaluation reminder after each prompt (~50-100 tokens ov
   }
 }
 ```
+
+This is optional. The recommended default is activator-only setup; enable `PostToolUse` only if you are comfortable with hook scripts inspecting command output for error patterns.
 
 ### Available Hook Scripts
 
