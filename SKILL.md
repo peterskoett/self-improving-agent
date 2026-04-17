@@ -41,6 +41,7 @@ If you want automatic reminders or setup assistance, use the opt-in hook workflo
 | Workflow improvements | Promote to `AGENTS.md` (OpenClaw workspace) |
 | Tool gotchas | Promote to `TOOLS.md` (OpenClaw workspace) |
 | Behavioral patterns | Promote to `SOUL.md` (OpenClaw workspace) |
+| User asks for cross-agent persistence | Use `scope: global` workflow below and write to shared path + broadcast summary |
 
 ## OpenClaw Setup (Recommended)
 
@@ -98,6 +99,20 @@ When learnings prove broadly applicable, promote them to workspace files:
 | Behavioral patterns | `SOUL.md` | "Be concise, avoid disclaimers" |
 | Workflow improvements | `AGENTS.md` | "Spawn sub-agents for long tasks" |
 | Tool gotchas | `TOOLS.md` | "Git push needs auth configured first" |
+
+### Visibility Scope (OpenClaw)
+
+Use explicit scope when logging a learning:
+
+- `scope: session` — applies to the current thread/session only.
+- `scope: agent` (default) — write to current workspace (`.learnings/*`, `AGENTS.md`, `TOOLS.md`, `SOUL.md`).
+- `scope: global` — make it visible across agents by writing to a shared path and syncing references.
+
+When user says phrases like **"all agents"**, **"global"**, **"全局"**, **"所有会话可见"**:
+
+1. Write canonical entry to a shared file (example: `~/.openclaw/skills/self-improving-agent/references/global-learnings.md`).
+2. Add/refresh a short pointer block in each agent's `AGENTS.md` (or equivalent workspace prompt file) that references the canonical global entry.
+3. Announce completion and affected agents.
 
 ### Inter-Session Communication
 
@@ -417,6 +432,12 @@ Automatically log when you notice:
 - "Actually, it should be..."
 - "You're wrong about..."
 - "That's outdated..."
+
+**Global persistence requests** (→ use `scope: global` workflow):
+- "Make this global"
+- "Apply to all agents/sessions"
+- "全局记住这条规则"
+- "所有agent都要生效"
 
 **Feature Requests** (→ feature request):
 - "Can you also..."
