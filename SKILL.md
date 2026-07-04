@@ -1,6 +1,7 @@
 ---
 name: self-improvement
 description: "Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks."
+version: "0.2.0"
 metadata:
 ---
 
@@ -556,6 +557,17 @@ This is optional. The recommended default is activator-only setup; enable `PostT
 | `scripts/error-detector.sh` | PostToolUse (Bash) | Triggers on command errors |
 
 See `references/hooks-setup.md` for detailed configuration and troubleshooting.
+
+## Upgrading & Uninstalling
+
+- **Before upgrading**, read `CHANGELOG.md` for breaking changes and per-version
+  upgrade notes. OpenClaw hook changes require re-copying the hook
+  (`cp -r hooks/openclaw ~/.openclaw/hooks/self-improvement`) and restarting
+  the gateway. `.learnings/` files are never migrated or overwritten.
+- **To disable or remove** the skill, follow `references/uninstall.md`.
+  Treat `.learnings/` as user data: review or archive it before deleting, and
+  note that content promoted to `CLAUDE.md`/`AGENTS.md`/`SOUL.md`/`TOOLS.md`
+  stays until removed manually.
 
 ## Automatic Skill Extraction
 
