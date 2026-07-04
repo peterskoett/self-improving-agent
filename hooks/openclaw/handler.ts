@@ -1,9 +1,9 @@
 /**
  * Self-Improvement Hook for OpenClaw
  *
- * OpenClaw has no PostToolUse equivalent, so the Claude Code error detector
- * (scripts/error-detector.sh) can never fire there. This hook provides the
- * OpenClaw-native alternative:
+ * OpenClaw has no per-tool-call hook event, so errors cannot be detected in
+ * real time after each command. This hook detects them at session end
+ * instead:
  *
  * - agent:bootstrap        Injects the self-improvement reminder before
  *                          workspace files are injected, including a note
@@ -50,8 +50,7 @@ Before logging:
 
 Keep entries simple: date, title, what happened, and what to do differently.`;
 
-// Keep the pattern set in sync with scripts/error-detector.sh (Claude Code
-// PostToolUse hook). Ordered specific → generic: the first matching pattern
+// Error-detection patterns. Ordered specific → generic: the first matching pattern
 // supplies the Pattern-Key stamped on swept entries, which is what makes
 // auto-detected errors dedup-able and recurrence-countable (see the
 // "Pattern-Key Taxonomy" section in SKILL.md).

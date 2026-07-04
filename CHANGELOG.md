@@ -40,18 +40,25 @@ Read this before upgrading. General upgrade rules:
   logging; keyword grep is the fallback. Recurrences are folded into the
   existing entry (`Recurrence-Count`, `Last-Seen`, `See Also`) instead of
   duplicated.
-- Tightened `SKILL.md` (hook sections, taxonomy, duplicated hook JSON) to
+- Tightened `SKILL.md` (hook sections, taxonomy, duplicated setup blocks) to
   keep the always-loaded skill prompt compact.
+- Promotion targets are now the OpenClaw workspace files (`SOUL.md`,
+  `TOOLS.md`, `AGENTS.md`), with the project's own agent file as the target
+  for project-specific patterns.
+
+### Removed
+
+- **This distribution is now OpenClaw-only.** Removed the Claude Code /
+  Codex / Copilot integrations: `scripts/activator.sh`,
+  `scripts/error-detector.sh`, `references/hooks-setup.md`, and the
+  multi-agent setup/support sections in `SKILL.md` and
+  `references/uninstall.md`. For the multi-agent version, see the original
+  https://github.com/pskoett/pskoett-ai-skills.
 
 ### Fixed
 
-- Hook scripts (`activator.sh`, `error-detector.sh`, `extract-skill.sh`) are
-  now committed with the executable bit set — previously every install needed
-  a manual `chmod +x`.
-- `error-detector.sh` reads PostToolUse input from stdin (current Claude Code
-  hook interface), falling back to the legacy `CLAUDE_TOOL_OUTPUT`
-  environment variable; previously it silently detected nothing on current
-  Claude Code versions.
+- `scripts/extract-skill.sh` is now committed with the executable bit set —
+  previously every install needed a manual `chmod +x`.
 
 ### Upgrade notes (0.2.0 → 0.3.0)
 
