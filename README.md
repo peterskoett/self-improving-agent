@@ -12,3 +12,18 @@ Remade for OpenClaw from the original repo:
 ## Main File
 
 - `SKILL.md`
+
+## Upgrading
+
+See `CHANGELOG.md` for version history and per-version upgrade notes. After
+upgrading, re-copy the OpenClaw hook and restart the gateway:
+
+```bash
+cp -r hooks/openclaw ~/.openclaw/hooks/self-improvement
+```
+
+## Uninstalling
+
+See `references/uninstall.md` for disable vs. full-removal steps per platform
+(OpenClaw, Claude Code/Codex, Copilot). Review `.learnings/` before deleting —
+it contains your captured learnings, not skill code.
