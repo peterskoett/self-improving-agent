@@ -37,7 +37,7 @@ Read this before upgrading. General upgrade rules:
   existing hook installs and `openclaw hooks enable self-improvement` are
   unaffected.
 
-## [0.4.0] - 2026-07-04
+## [4.0.0] - 2026-07-04
 
 ### Removed
 
@@ -57,7 +57,7 @@ Read this before upgrading. General upgrade rules:
   terms (OpenClaw has no per-tool-call event) instead of contrasting with
   other platforms.
 
-### Upgrade notes (0.3.0 → 0.4.0)
+### Upgrade notes (0.3.0 → 4.0.0)
 
 1. If you configured the Claude Code/Codex hooks from earlier versions,
    remove the stale `.claude/settings.json` / `.codex/settings.json` entries

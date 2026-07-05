@@ -178,16 +178,19 @@ test('sweep is idempotent for already-logged excerpts', async () => {
 test('sweep redacts secrets and truncates long lines', async () => {
   await fs.mkdir(path.join(workspaceDir, '.learnings'), { recursive: true });
   const longTail = 'x'.repeat(300);
+  // Fixture secret is assembled at runtime so the literal never appears in
+  // this file and secret scanners don't flag it as an exposed credential.
+  const fakeKey = ['sk', 'live', '1234567890'].join('-');
   const sessionFile = await writeTranscript([
     toolResultLine(
-      `Error: request failed with api_key=sk-live-1234567890 Bearer abc.def.ghi token: hunter2 ${longTail}`,
+      `Error: request failed with api_key=${fakeKey} Bearer abc.def.ghi token: hunter2 ${longTail}`,
     ),
   ]);
 
   await handler(makeCommandEvent('new', sessionFile));
 
   const content = await fs.readFile(errorsFile(), 'utf-8');
-  assert.doesNotMatch(content, /sk-live-1234567890/);
+  assert.doesNotMatch(content, new RegExp(fakeKey));
   assert.doesNotMatch(content, /hunter2/);
   assert.match(content, /\[REDACTED\]/);
   assert.doesNotMatch(content, /x{250}/);
