@@ -52,3 +52,7 @@ cp -r ~/.openclaw/skills/self-improving-agent/hooks/openclaw ~/.openclaw/hooks/s
 See `self-improving-agent/references/uninstall.md` for disable vs.
 full-removal steps. Review `.learnings/` before deleting — it contains your
 captured learnings, not skill code.
+
+## Download History
+
+[![Download History](https://skill-history.com/chart/pskoett/self-improving-agent.svg)](https://skill-history.com/pskoett/self-improving-agent)
